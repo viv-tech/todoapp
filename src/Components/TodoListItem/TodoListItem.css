@@ -1,0 +1,32 @@
+li {
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  cursor: pointer;
+  background-color: #066acd;
+  height: 40px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  display: flex;
+  border-radius: 10px;
+  justify-content: space-between;
+  color: white;
+  
+}
+
+#remove {
+  left: 0%;
+  background-color: rgb(244, 72, 72);
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+}
+
+#remove:hover {
+  background-color: white;
+  color: red;
+}

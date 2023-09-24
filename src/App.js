@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import TodoList from './Components/TodoList/TodoList';
+import Navbars from './Components/Navbar/Navbar.js';
+import { useContext } from 'react';
+import { AuthorizeContext, useAuth } from './Authorization';
+import { Routes, Route } from 'react-router-dom';
+import Login from './Components/Login/Login.js';
 
 function App() {
+
+
+  const { authData, login, logout } = useAuth();
+
+
+
+  // const list = "/todolist:" + authData.user;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbars />
+      <div className="App">
+        <Routes>
+
+          {authData.loggedIn ? <Route path='/todo' element={<TodoList />} /> : <Route path='/' element={<Login />} />}
+        </Routes>
+        <TodoList />
+      </div>
+    </>
   );
 }
 
