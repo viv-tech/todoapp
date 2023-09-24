@@ -1,28 +1,26 @@
 import './App.css';
 import TodoList from './Components/TodoList/TodoList';
 import Navbars from './Components/Navbar/Navbar.js';
-import { useContext } from 'react';
-import { AuthorizeContext, useAuth } from './Authorization';
-import { Routes, Route } from 'react-router-dom';
+import { useAuth } from './Authorization';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Components/Login/Login.js';
 
 function App() {
 
 
-  const { authData, login, logout } = useAuth();
+  const { loggedIn } = useAuth();
 
 
-
-  // const list = "/todolist:" + authData.user;
   return (
     <>
       <Navbars />
       <div className="App">
         <Routes>
-
-          {authData.loggedIn ? <Route path='/todo' element={<TodoList />} /> : <Route path='/' element={<Login />} />}
+          <Route path='/login' element={<Login />} />
+          <Route path='/todolist' element={<TodoList />} />
+          <Route path='*' element={<Navigate to='/login' />} />
         </Routes>
-        <TodoList />
+        {loggedIn ? <Navigate to='/todolist' /> : <Navigate to='/login' />}
       </div>
     </>
   );

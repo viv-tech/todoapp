@@ -1,13 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react'
 import './Navbar.css';
+import { useAuth } from '../../Authorization';
 
 const Navbars = () => {
+
+    const { loggedIn, logout } = useAuth();
+
+    useEffect(() => {
+        console.log(loggedIn);
+    });
 
     return (
         <div className='navbar'>
             TODO APP
-            <Link to='/login'><p>login</p></Link>
+            {loggedIn && <button onClick={logout}>Logout</button>}
         </div>
     )
 }

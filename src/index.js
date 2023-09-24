@@ -11,6 +11,7 @@ root.render(
 
   <BrowserRouter>
     <Authorization>
+      <App />
     </Authorization>
   </BrowserRouter>
 

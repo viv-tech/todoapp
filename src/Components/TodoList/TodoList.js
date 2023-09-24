@@ -1,18 +1,12 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import './TodoList.css';
 import TodoListItem from '../TodoListItem/TodoListItem';
-import { AuthorizeContext } from '../../Authorization';
 
 const TodoList = () => {
 
     const [todos, setTodos] = useState([]);
-    const [showTodos, setShowTodos] = useState(true);
     const [newTodo, setNewTodo] = useState('');
     const [id, setId] = useState(4);
-    const { authData } = useContext(AuthorizeContext);
-    const [database, setDatabase] = useState('');
-
-    setDatabase('todo-' + authData.user);
 
     useEffect(() => {
 
@@ -29,14 +23,14 @@ const TodoList = () => {
 
 
         setTodos(StartTodoList);
-        localStorage.setItem(database, JSON.stringify(todos));
+        localStorage.setItem('todos', JSON.stringify(todos));
 
         return saveTodos;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const saveTodos = () => {
-        const storedTodos = JSON.parse(localStorage.getItem(database)) || [];
+        const storedTodos = JSON.parse(localStorage.getItem('todos')) || [];
         setTodos(storedTodos);
     }
 
@@ -61,10 +55,6 @@ const TodoList = () => {
     useEffect(() => {
         localStorage.setItem('todos', JSON.stringify(todos));
     }, [todos]);
-
-    const toggleData = () => {
-        setShowTodos(!showTodos)
-    };
 
     return (
         <div className='AddHeader'>
